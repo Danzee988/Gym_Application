@@ -25,8 +25,8 @@ public class exercisePage extends AppCompatActivity {
     private TextView nameText, totalSetsText, setNumberText,setNumberText1,setNumberText2,setNumberText3;
     private EditText repsText,repsText1,repsText2,repsText3, weightText, weightText1, weightText2, weightText3;
     private ImageView imageResource;
-    //private ArrayList<Exercise> exercises;
 
+    private int newWeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,39 +104,6 @@ public class exercisePage extends AppCompatActivity {
         weightText2.setText(String.valueOf(weight));
         weightText3.setText(String.valueOf(weight));
 
-        weightText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String str = weightText.getText().toString();
-                    int weight = str.isEmpty() ? 0 : Integer.parseInt(str);
-                    Log.d("weight", String.valueOf(weight));
-
-                    String str1 = weightText1.getText().toString();
-                    int weight1 = str1.isEmpty() ? 0 : Integer.parseInt(str1);
-                    Log.d("weight1", String.valueOf(weight1));
-
-                    String str2 = weightText2.getText().toString();
-                    int weight2 = str2.isEmpty() ? 0 : Integer.parseInt(str2);
-                    Log.d("weight2", String.valueOf(weight2));
-
-                    String str3 = weightText3.getText().toString();
-                    int weight3 = str3.isEmpty() ? 0 : Integer.parseInt(str3);
-                    Log.d("weight3", String.valueOf(weight3));
-
-                    if (weight > weight1 && weight > weight2 && weight > weight3) {
-                        exercise.setWeight(weight2);
-                    } else if (weight1 > weight && weight1 > weight2 && weight1 > weight3) {
-                        exercise.setWeight(weight1);
-                    } else if (weight2 > weight && weight2 > weight1 && weight2 > weight3) {
-                        exercise.setWeight(weight2);
-                    } else if (weight3 > weight && weight3 > weight1 && weight3 > weight2) {
-                        exercise.setWeight(weight3);
-                    }
-                }
-            }
-        });
-
 
         if (exercise.getWeight() > 0) {
                 weightText.setText(String.valueOf(exercise.getWeight()));
@@ -148,8 +115,8 @@ public class exercisePage extends AppCompatActivity {
                 public void onClick(View v) {
                     // Get the updated values from the UI
                     int updatedSets = Integer.parseInt(totalSetsText.getText().toString());
-                    int updatedReps = Integer.parseInt(repsText.getText().toString());
-                    int updatedWeight = Integer.parseInt(weightText.getText().toString());
+                    int updatedReps = getLargestReps();
+                    int updatedWeight = getLargestWeight();
 
                     // Update the exercise object with the new values
                     exercise.setReps(updatedReps);
@@ -207,17 +174,52 @@ public class exercisePage extends AppCompatActivity {
         });
         }
 
+    private int getLargestWeight() {
+        int weight1 = Integer.parseInt(weightText.getText().toString());
+        int weight2 = Integer.parseInt(weightText1.getText().toString());
+        int weight3 = Integer.parseInt(weightText2.getText().toString());
+        int weight4 = Integer.parseInt(weightText3.getText().toString());
+
+        int largestWeight = weight1;
+
+        if (weight2 > largestWeight) {
+            largestWeight = weight2;
+        }
+
+        if (weight3 > largestWeight) {
+            largestWeight = weight3;
+        }
+
+        if (weight4 > largestWeight) {
+            largestWeight = weight4;
+        }
+
+        return largestWeight;
     }
 
-    // Iterate through the exercises list
-//                        String Name = exercise.getName();
-//                        int exerciseSets = exercise.getSets();
-//                        int exerciseReps = exercise.getReps();
-//                        int exerciseWeight = exercise.getWeight();
-//                        exerciseId = exercise.getId();
-//
-//                        Log.d("Exercise Info", "Exercise: " + Name +
-//                                ", ID: " + exerciseId +
-//                                ", Sets: " + exerciseSets +
-//                                ", Reps: " + exerciseReps +
-//                                ", Weight: " + updatedWeight);
+    private int getLargestReps() {
+        int reps1 = Integer.parseInt(repsText.getText().toString());
+        int reps2 = Integer.parseInt(repsText1.getText().toString());
+        int reps3 = Integer.parseInt(repsText2.getText().toString());
+        int reps4 = Integer.parseInt(repsText3.getText().toString());
+
+        int largestReps = reps1;
+
+        if (reps2 > largestReps) {
+            largestReps = reps2;
+        }
+
+        if (reps3 > largestReps) {
+            largestReps = reps3;
+        }
+
+        if (reps4 > largestReps) {
+            largestReps = reps4;
+        }
+
+        return largestReps;
+    }
+
+
+}
+

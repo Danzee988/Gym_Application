@@ -1,6 +1,8 @@
 package com.example.gymapplication.adaptors;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -76,48 +79,74 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
             }
 
 
-            holder.setsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            // TextWatcher for setsEditText
+            holder.setsEditText.addTextChangedListener(new TextWatcher() {
                 @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        String setsText = holder.setsEditText.getText().toString();
-                        if (!setsText.isEmpty()) {
-                            int sets = Integer.parseInt(setsText);
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (!s.toString().isEmpty()) {
+                        try {
+                            int sets = Integer.parseInt(s.toString());
                             item.setSets(sets);
+                        } catch (NumberFormatException e) {
+                            showToast("Invalid input. Please enter an integer.");
                         }
                     }
-                    Log.d("ExerciseAdapter", "sets: " + item.getSets());
-                    Log.d("ExerciseAdapter", "reps: " + item.getReps());
-                    Log.d("ExerciseAdapter", "weight: " + item.getWeight());
                 }
-            });
-
-            holder.repsEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
-                public void onFocusChange(View v, boolean hasFocus) {
-                    if (!hasFocus) {
-                        String repsText = holder.repsEditText.getText().toString();
-                        if (!repsText.isEmpty()) {
-                            int reps = Integer.parseInt(repsText);
-                            item.setReps(reps);
-                        }
-                    }
+                public void afterTextChanged(Editable s) {
                 }
             });
 
-            holder.weightEditText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    String weightText = holder.weightEditText.getText().toString();
-                    if (!weightText.isEmpty()) {
-                        int weight = Integer.parseInt(weightText);
-                        item.setWeight(weight);
+
+            // TextWatcher for repsEditText
+            holder.repsEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (!s.toString().isEmpty()) {
+                        try {
+                            int reps = Integer.parseInt(s.toString());
+                            item.setReps(reps);
+                        } catch (NumberFormatException e) {
+                            showToast("Invalid input. Please enter an integer.");
+                        }
                     }
                 }
-            }
-        });
 
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
+
+            // TextWatcher for weightEditText
+            holder.weightEditText.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    if (!s.toString().isEmpty()) {
+                        try {
+                            int weight = Integer.parseInt(s.toString());
+                            item.setWeight(weight);
+                        } catch (NumberFormatException e) {
+                            showToast("Invalid input. Please enter an integer.");
+                        }
+                    }
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                }
+            });
         }
 
             holder.checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -161,6 +190,10 @@ public class ExerciseAdapter extends ArrayAdapter<Exercise> {
             }
         }
         notifyDataSetChanged();
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
 }

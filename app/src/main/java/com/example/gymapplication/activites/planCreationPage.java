@@ -36,8 +36,6 @@ public class planCreationPage extends AppCompatActivity {
     int y;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -179,6 +177,7 @@ public class planCreationPage extends AppCompatActivity {
 
             }
         });
+
     }
 }
 
