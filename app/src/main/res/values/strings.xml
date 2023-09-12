@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Gym Application</string>
+    <string name="main_page">Main Page</string>
+    <string name="navigation_page">Navigation Page</string>
+    <string name="main_menu">Main Menu</string>
+    <string name="app_entry">Lets go super saiyan</string>
+    <string name="create_plan">Create a Plan</string>
+    <string name="plans_page">Choose a Plan</string>
+    <string name="workout_page">Start the Workout</string>
+    <string name="exercise_page">Enter Exercise Details</string>
+
+
+</resources>

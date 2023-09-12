@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shape xmlns:android="http://schemas.android.com/apk/res/android">
+        <stroke
+            android:width="50dp"
+            android:color="#FFFFFF" /> <!-- Set the color to white -->
+        <solid android:color="@android:color/transparent" />
+        <corners android:radius="8dp" />
+        <size android:height="50dp" /> <!-- Adjust the height of the zigzag pattern -->
+        <item>
+            <shape>
+                <solid android:color="@android:color/transparent" />
+                <stroke
+                    android:width="50dp"
+                    android:color="#FFFFFF" /> <!-- Set the color to white -->
+                <padding android:left="2dp" android:right="2dp" />
+                <size android:width="10dp" /> <!-- Adjust the width of each zigzag line -->
+            </shape>
+        </item>
+        <item>
+            <rotate
+                android:fromDegrees="45"
+                android:pivotX="0%"
+                android:pivotY="0%">
+                <shape>
+                    <solid android:color="#FFFFFF" /> <!-- Set the color to white -->
+                    <size android:height="5dp" /> <!-- Adjust the height of each zigzag line -->
+                </shape>
+            </rotate>
+        </item>
+        <item>
+            <rotate
+                android:fromDegrees="45"
+                android:pivotX="50%"
+                android:pivotY="0%">
+                <shape>
+                    <solid android:color="#FFFFFF" /> <!-- Set the color to white -->
+                    <size android:height="5dp" /> <!-- Adjust the height of each zigzag line -->
+                </shape>
+            </rotate>
+        </item>
+    </shape>
+
+
+
+</selector>

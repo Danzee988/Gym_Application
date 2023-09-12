@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:padding="8dp"
+    android:background="@drawable/button_outline"
+
+    >
+
+    <ImageView
+        android:id="@+id/image_preference"
+        android:layout_width="63dp"
+        android:layout_height="63dp"
+        android:layout_alignParentStart="true"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/text_preference"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/image_preference"
+        android:layout_marginStart="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/reps_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/text_preference"
+        android:layout_marginTop="32dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Reps: "
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/reps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/reps_text"
+        android:layout_marginTop="33dp"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/sets_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/reps"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Sets: "
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/sets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="33dp"
+        android:layout_toEndOf="@id/sets_text"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:id="@+id/weight_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/sets"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:text="Weight: "
+        android:textColor="@color/white"
+        android:textSize="15dp" />
+
+    <TextView
+        android:id="@+id/weight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/weight_text"
+        android:layout_marginTop="33dp"
+        android:inputType="number"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:gravity="center"
+        />
+
+
+</RelativeLayout>
