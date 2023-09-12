@@ -155,23 +155,33 @@ public class exercisePage extends AppCompatActivity {
 
                     // Close the database connection
                     sqLiteDatabase.close();
+
+                    // Create an intent to pass the updated exercise back to the previous activity
+                    Intent resultIntent = new Intent();
+                    resultIntent.putExtra("UPDATED_EXERCISE_JSON", new Gson().toJson(exercise));
+
+                    // Set the result code to indicate success (you can define your own result code)
+                    setResult(RESULT_OK, resultIntent);
+
+                    // Finish the current activity (exercisePage)
+                    finish();
                 }
             });
 
-        btnReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Create an intent to pass the updated exercise back to the previous activity
-                Intent resultIntent = new Intent();
-                resultIntent.putExtra("UPDATED_EXERCISE_JSON", new Gson().toJson(exercise));
-
-                // Set the result code to indicate success (you can define your own result code)
-                setResult(RESULT_OK, resultIntent);
-
-                // Finish the current activity (exercisePage)
-                finish();
-            }
-        });
+//        btnReturn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                // Create an intent to pass the updated exercise back to the previous activity
+//                Intent resultIntent = new Intent();
+//                resultIntent.putExtra("UPDATED_EXERCISE_JSON", new Gson().toJson(exercise));
+//
+//                // Set the result code to indicate success (you can define your own result code)
+//                setResult(RESULT_OK, resultIntent);
+//
+//                // Finish the current activity (exercisePage)
+//                finish();
+//            }
+//        });
         }
 
     private int getLargestWeight() {
