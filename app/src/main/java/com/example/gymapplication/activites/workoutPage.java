@@ -24,18 +24,16 @@ import java.util.ArrayList;
 
 public class workoutPage extends AppCompatActivity {
     Context context = this;
-    private ListView workoutList;
     private ArrayList<Exercise> exercises;
     private workoutAdaptor workoutAdapter;
-    private Button btncomplete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.workout_page);
 
-        workoutList = findViewById(R.id.workout_list);
-        btncomplete = findViewById(R.id.btn_complete);
+        ListView workoutList = findViewById(R.id.workout_list);
+        Button btnComplete = findViewById(R.id.btn_complete);
 
         // Retrieve the plan details JSON string from the intent
         String planDetailsJson = getIntent().getStringExtra("PLAN_DETAILS_JSON");
@@ -51,7 +49,7 @@ public class workoutPage extends AppCompatActivity {
         workoutList.setAdapter(workoutAdapter);
         workoutList.setDividerHeight(20);
 
-        btncomplete.setOnClickListener(new View.OnClickListener() {
+        btnComplete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 for (int i = 0; i < exercises.size(); i++) {

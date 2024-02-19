@@ -97,7 +97,7 @@ public class plansPage extends AppCompatActivity {
                 SQLiteDatabase sqLiteDatabase = db.getReadableDatabase();
 
                 for (String exerciseId : exerciseIds) {
-                    Exercise exercise = db.getExerciseByUUID(getApplicationContext() , exerciseId);
+                    Exercise exercise = GymDatabase.getExerciseByUUID(getApplicationContext() , exerciseId);
 
                     if (exercise != null) {
                         Log.d("Exercise", "Exercise Name: " + exercise.getName());
