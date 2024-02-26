@@ -38,29 +38,12 @@ public class navigationPage extends AppCompatActivity {
         openPlanDetails(planList);
     }
 
-//    private ArrayList<Plan> convertCursorToArrayList(Cursor cursor) {
-//        ArrayList<Plan> planList = new ArrayList<>();
-//
-//        if (cursor != null && cursor.moveToFirst()) {
-//            do {
-//                // Assuming you have a Plan class to represent your plan data
-//                Plan plan = new Plan();
-//                // Populate plan object from cursor columns
-//                // plan.setId(cursor.getInt(cursor.getColumnIndex("id")));
-//                plan.setName(cursor.getColumnName(cursor.getColumnIndex("name"))));
-//                // plan.setName(cursor.getString(cursor.getColumnIndex("name")));
-//                // ...
-//
-//                planList.add(plan);
-//            } while (cursor.moveToNext());
-//        }
-//
-//        if (cursor != null) {
-//            cursor.close();
-//        }
-//
-//        return planList;
-//    }
+    public void onCheckProgressClick(View view) {
+        Intent intent = new Intent(this, progressPage.class);
+        startActivity(intent);
+    }
+
+
     public void openPlanDetails(ArrayList<Plan> planList) {
         // Create an intent to open the plan details activity
         Intent intent = new Intent(this, plansPage.class);

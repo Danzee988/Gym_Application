@@ -59,6 +59,12 @@
 
         </activity>
 
+        <activity
+            android:name=".activites.progressPage"
+            android:exported="true"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

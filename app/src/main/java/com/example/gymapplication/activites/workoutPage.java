@@ -43,7 +43,9 @@ public class workoutPage extends AppCompatActivity {
         exercises = new Gson().fromJson(planDetailsJson, type);
 
         // Create the custom adapter for the exercises
-        workoutAdapter = new workoutAdaptor(this, exercises.toArray(new Exercise[0]));
+        if (exercises != null) {
+            workoutAdapter = new workoutAdaptor(this, exercises.toArray(new Exercise[0]));
+        }
 
         // Set the adapter to the ListView
         workoutList.setAdapter(workoutAdapter);
@@ -58,9 +60,19 @@ public class workoutPage extends AppCompatActivity {
                             " reps " + exercises.get(i).getReps() +
                             " weight " + exercises.get(i).getWeight());
                 }
+                    // Create an intent to return the workout information to progressPage activity
+                    Intent intent = new Intent(workoutPage.this, progressPage.class);
 
-            }
-        });
+                    // Convert the list of exercises to JSON string using Gson
+                    String workoutDetailsJson = new Gson().toJson(exercises);
+
+                    // Pass the workout details JSON string back to the progressPage activity
+                    intent.putExtra("UPDATED_EXERCISE_JSON", workoutDetailsJson);
+
+                    // Start the progressPage activity
+                    startActivity(intent);
+                }
+            });
     }
 
     @Override

@@ -5,19 +5,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.gymapplication.R;
+import com.example.gymapplication.adaptors.PlanAdaptor;
 import com.example.gymapplication.methods.Exercise;
 import com.example.gymapplication.methods.GymContract;
 import com.example.gymapplication.methods.GymDatabase;
-import com.example.gymapplication.adaptors.PlanAdaptor;
 import com.example.gymapplication.methods.Plan;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -26,15 +23,13 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class plansPage extends AppCompatActivity {
-    private ListView planList;
     private ArrayList<String> planData;
-    private ArrayList<ArrayList<Exercise>> planInfo; // Updated to store ArrayList<Exercise>
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plans_page);
 
-        planList = findViewById(R.id.plan_list);
+        ListView planList = findViewById(R.id.plan_list);
 
         // Retrieve the plan details JSON string from the intent
         String planListJson = getIntent().getStringExtra("PLAN_DETAILS_JSON");
@@ -52,7 +47,8 @@ public class plansPage extends AppCompatActivity {
         }
 
         planData = new ArrayList<>(); // ArrayList to store the plan data
-        planInfo = new ArrayList<>(); // ArrayList to store the plan data
+        // Updated to store ArrayList<Exercise>
+        ArrayList<ArrayList<Exercise>> planInfo = new ArrayList<>(); // ArrayList to store the plan data
 
 
         // Create an ArrayAdapter to display the plan data in the ListView
@@ -126,8 +122,6 @@ public class plansPage extends AppCompatActivity {
         }
 
         cursor.close();
-
-
     }
 
     public void openPlanDetails(ArrayList<Exercise> selectedPlanExercises) {

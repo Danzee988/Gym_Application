@@ -6,6 +6,7 @@
     <string name="app_entry">Lets go super saiyan</string>
     <string name="create_plan">Create a Plan</string>
     <string name="plans_page">Choose a Plan</string>
+    <string name="progress_page">Workout Progress</string>
     <string name="workout_page">Start the Workout</string>
     <string name="exercise_page">Enter Exercise Details</string>
 

@@ -166,6 +166,8 @@
                 android:gravity="center"
                 android:orientation="vertical"
                 android:background="@drawable/grid_outline"
+                android:onClick="onCheckProgressClick"
+
 
                 >
 
