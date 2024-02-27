@@ -1,5 +1,7 @@
 package com.example.gymapplication.adaptors;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -15,6 +17,7 @@ import androidx.annotation.Nullable;
 
 import com.example.gymapplication.R;
 import com.example.gymapplication.activites.plansPage;
+import com.example.gymapplication.activites.weightListPage;
 import com.example.gymapplication.activites.workoutPage;
 import com.example.gymapplication.methods.Exercise;
 import com.example.gymapplication.methods.GymDatabase;
@@ -23,11 +26,12 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class progressAdaptor extends ArrayAdapter<String> {
 
     private ArrayList<ArrayList<Exercise>> planInfoList;
-
+    private ArrayList<Exercise> exercises;
 
     public progressAdaptor(Context context, ArrayList<String> plans, ArrayList<ArrayList<Exercise>> planInfoList) {
 
@@ -76,13 +80,26 @@ public class progressAdaptor extends ArrayAdapter<String> {
         progressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Get the clicked plan details (list of exercises)
-                ArrayList<Exercise> selectedPlanExercises = planInfoList.get(position);
+                ArrayList<String> weightList = new ArrayList<>();
+                // Assuming exercises is initialized with the appropriate list of exercises
+                for (int i = 0; i < exercises.size(); i++) {
+                    Exercise exercise = exercises.get(i);
+                    String weight = String.valueOf(exercise.getWeight());
+                    weightList.add(weight);
 
-                // Call the method to open the plan details activity
-                openPlanDetails(selectedPlanExercises);
+                    Log.d("workoutPage", "exercise " + exercise.getName() +
+                            " sets " + exercise.getSets() +
+                            " reps " + exercise.getReps() +
+                            " weight " + weight);
+                }
+
+                // Start a new activity and pass the weight list as an extra
+                Intent intent = new Intent(getContext(), weightListPage.class);
+                intent.putStringArrayListExtra("WEIGHT_LIST", weightList);
+                getContext().startActivity(intent);
             }
         });
+
 
         return convertView;
     }
